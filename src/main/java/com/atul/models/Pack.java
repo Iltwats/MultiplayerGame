@@ -1,7 +1,5 @@
 package com.atul.models;
 
-
-
 import com.atul.constants.CardTypes;
 import com.atul.constants.Rank;
 
