@@ -1,38 +1,28 @@
 package com.atul.models;
 
 import com.atul.constants.CardTypes;
+import com.atul.constants.Rank;
 
 public class Card {
-    int number;
     CardTypes cardTypes;
+    Rank rank;
 
-    public Card(int number, CardTypes cardTypes) {
-        this.number = number;
+    public Card(CardTypes cardTypes, Rank rank) {
+        this.rank = rank;
         this.cardTypes = cardTypes;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public CardTypes getCardTypes() {
         return cardTypes;
     }
 
-    public void setCardTypes(CardTypes cardTypes) {
-        this.cardTypes = cardTypes;
+    public Rank getRank() {
+        return rank;
     }
 
     @Override
     public String toString() {
-        return "Card{" +
-                "number=" + number +
-                ", cardTypes=" + cardTypes +
-                '}';
+        return rank + " of " + cardTypes;
     }
 }
 

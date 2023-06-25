@@ -1,45 +1,39 @@
 package com.atul.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
-    int playerID;
-    ArrayList<Card> hand;
+    private final String name;
+    private final List<Card> hand;
 
-    public Player(int playerID) {
-        this.playerID = playerID;
-        hand = new ArrayList<>();
+    public Player(String name) {
+        this.name = name;
+        this.hand = new ArrayList<>();
     }
 
-    public int getPlayerID() {
-        return playerID;
+    public String getName() {
+        return name;
     }
 
-    public void setPlayerID(int playerID) {
-        this.playerID = playerID;
-    }
-
-    public ArrayList<Card> getHand() {
+    public List<Card> getHand() {
         return hand;
     }
 
-    public void setHand(ArrayList<Card> hand) {
-        this.hand = hand;
+    public void addCardToHand(Card card) {
+        hand.add(card);
+    }
+
+    public void removeCardFromHand(Card card) {
+        hand.remove(card);
+    }
+
+    public boolean hasCards() {
+        return !hand.isEmpty();
     }
 
     @Override
     public String toString() {
-        return "Player{" +
-                "playerID=" + playerID +
-                ", hand=" + hand +
-                '}';
-    }
-
-    public void insertCard(Card card) {
-        hand.add(card);
-    }
-
-    public void deleteCard(Card card) {
-        hand.remove(card);
+        return name;
     }
 }

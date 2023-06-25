@@ -1,35 +1,35 @@
 package com.atul.models;
 
+
+
 import com.atul.constants.CardTypes;
+import com.atul.constants.Rank;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class Pack {
-    ArrayList<Card> packs;
+    private final List<Card> cards;
 
     public Pack() {
-        this.packs = shuffledDeck();
-    }
-
-    public ArrayList<Card> getPacks() {
-        return packs;
-    }
-
-    public void setPacks(ArrayList<Card> packs) {
-        this.packs = packs;
-    }
-
-    public ArrayList<Card> shuffledDeck() {
-        ArrayList<Card> shuffledCards = new ArrayList<>();
+        cards = new ArrayList<>();
         for (CardTypes cardTypes : CardTypes.values()) {
-            for (int i = 1; i <= 13; i++) {
-                shuffledCards.add(new Card(i, cardTypes));
+            for (Rank rank : Rank.values()) {
+                cards.add(new Card(cardTypes, rank));
             }
         }
-        // using seed so everytime shuffle is different.
-        Collections.shuffle(shuffledCards, new Random(System.currentTimeMillis()));
-        return shuffledCards;
+    }
+
+    public void shuffle() {
+        Collections.shuffle(cards);
+    }
+
+    public Card drawCard() {
+        if (cards.isEmpty()) {
+            return null;
+        }
+        return cards.remove(cards.size() - 1);
     }
 }
