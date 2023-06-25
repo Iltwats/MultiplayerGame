@@ -51,6 +51,11 @@ public class MultiplayerGameImpl implements MultiplayerGame {
         System.out.println("Game over!");
     }
 
+    /**
+     * Drives the game for each individual player
+     * @param player, who is playing
+     * @param card, which is being discarded
+     */
     @Override
     public void playCard(Player player, Card card) {
         if (player.equals(players.get(currentPlayerIndex))) {
@@ -90,6 +95,9 @@ public class MultiplayerGameImpl implements MultiplayerGame {
         discardPile.add(pack.drawCard());
     }
 
+    /**
+     * Drives the game for all the players
+     */
     private void playGame() {
         while (!gameOver) {
             Player currentPlayer = players.get(currentPlayerIndex);
@@ -131,6 +139,13 @@ public class MultiplayerGameImpl implements MultiplayerGame {
         }
     }
 
+    /**
+     * Checks condition if another player can play onto the card played
+     * by previous player
+     * @param topCard, previous played card
+     * @param player, current player
+     * @return true, if can be played, else false
+     */
     private boolean canPlayCard(Card topCard, Player player) {
         for (Card card : player.getHand()) {
             if (card.getCardTypes() == topCard.getCardTypes() || card.getRank() == topCard.getRank()) {
@@ -149,6 +164,11 @@ public class MultiplayerGameImpl implements MultiplayerGame {
         }
         return nextPlayerIndex;
     }
+
+    /**
+     * Determines what will happen when an action card is played
+     * @param card
+     */
     private void applyCardAction(Card card) {
         Integer action = rankActionMap.get(card.getRank());
         if (action != null) {
