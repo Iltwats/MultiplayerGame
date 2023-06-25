@@ -23,6 +23,10 @@ public class Pack {
         shuffle();
     }
 
+    public List<Card> getCards() {
+        return cards;
+    }
+
     public void shuffle() {
         Collections.shuffle(cards, new Random(System.currentTimeMillis()));
     }
