@@ -20,10 +20,11 @@ public class Pack {
                 cards.add(new Card(cardTypes, rank));
             }
         }
+        shuffle();
     }
 
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(cards, new Random(System.currentTimeMillis()));
     }
 
     public Card drawCard() {
@@ -31,5 +32,9 @@ public class Pack {
             return null;
         }
         return cards.remove(cards.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return cards.isEmpty();
     }
 }
