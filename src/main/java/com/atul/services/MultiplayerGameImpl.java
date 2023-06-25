@@ -149,6 +149,30 @@ public class MultiplayerGameImpl implements MultiplayerGame {
         }
         return nextPlayerIndex;
     }
-
+    private void applyCardAction(Card card) {
+        Integer action = rankActionMap.get(card.getRank());
+        if (action != null) {
+            if (action > 0) {
+                for (int i = 0; i < action; i++) {
+                    Player nextPlayer = players.get(getNextPlayerIndex());
+                    Card drawnCard = pack.drawCard();
+                    if (drawnCard != null) {
+                        nextPlayer.addCardToHand(drawnCard);
+                        System.out.println(nextPlayer + " drew a card: " + drawnCard);
+                    } else {
+                        gameOver = true;
+                        System.out.println("Draw pile is empty. The game ends in a draw.");
+                        return;
+                    }
+                }
+            } else if (action == 0) {
+                Player nextPlayer = players.get(getNextPlayerIndex());
+                System.out.println(nextPlayer + "'s turn is skipped!");
+            } else if (action == -1) {
+                direction *= -1;
+                System.out.println("Direction is reversed!");
+            }
+        }
+    }
 }
 
